@@ -16,7 +16,7 @@ return(
 </div>
 
 <h2>
-<CountUp end={15000} duration={3}/>+
+<CountUp end={1000} duration={3}/>+
 </h2>
 
 <p>Digital Creators Network</p>
@@ -64,7 +64,7 @@ return(
 <CountUp end={120} duration={3}/>+
 </h2>
 
-<p>Training Workshops</p>
+<p>Legal Advisers</p>
 
 </div>
 

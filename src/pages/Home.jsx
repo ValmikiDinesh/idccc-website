@@ -39,8 +39,7 @@ Join Membership
 <p>
 
 Indian Digital Content Creators Council supports digital creators,
-journalists and influencers across India through advocacy,
-training and community building.
+journalists and influencers across India through legal awareness & community building.
 
 </p>
 
@@ -71,9 +70,9 @@ training and community building.
 
 <div className="card">
 
-<h3>Training Programs</h3>
+<h3>Our Aim</h3>
 
-<p>Digital journalism and media training.</p>
+<p>To empower digital content creators in India through legal support.</p>
 
 </div>
 
