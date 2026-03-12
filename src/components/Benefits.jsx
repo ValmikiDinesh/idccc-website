@@ -29,9 +29,9 @@ marginTop:"40px"
 
 <FaBalanceScale size={40}/>
 
-<h3>Creator Rights Protection</h3>
+<h3>Digital Creators Rights Protection</h3>
 
-<p>Support and protection for journalists.</p>
+<p>Support and protection for journalists, influencers and content creators.</p>
 
 </div>
 

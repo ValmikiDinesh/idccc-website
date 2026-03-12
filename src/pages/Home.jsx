@@ -19,7 +19,7 @@ return(
 <div className="hero-content">
 
 <p>
-Indian Digital Content Creator Council (IDCCC)
+Indian Digital Content Creators Council (IDCCC)
 </p>
 
 <button>
@@ -38,7 +38,7 @@ Join Membership
 
 <p>
 
-Indian Digital Content Creator Council supports digital creators,
+Indian Digital Content Creators Council supports digital creators,
 journalists and influencers across India through advocacy,
 training and community building.
 

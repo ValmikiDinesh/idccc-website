@@ -9,7 +9,7 @@ padding:"40px",
 textAlign:"center"
 }}>
 
-<h3>Indian Digital Content Creator Council</h3>
+<h3>Indian Digital Content Creators Council</h3>
 
 <p>support@idccc.in</p>
 

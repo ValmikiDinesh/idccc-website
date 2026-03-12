@@ -18,7 +18,7 @@ return(
 
 <h2>IDCCC</h2>
 
-<span>Indian Digital Content Creator Council</span>
+<span>Indian Digital Content Creators Council</span>
 
 </div>
 
