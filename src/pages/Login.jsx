@@ -17,7 +17,8 @@ export default function Login() {
     setLoading(true);
 
     try {
-      const res = await axios.post("http://localhost:4001/api/members/login", {
+      const API_URL = process.env.REACT_APP_API_URL;
+      const res = await axios.post(`${API_URL}/api/members/login`, {
         email,
         password,
       });

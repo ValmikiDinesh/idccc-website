@@ -102,7 +102,8 @@ export default function JoinMembership() {
     if (files.profilePhoto) data.append("profilePhoto", files.profilePhoto);
 
     try {
-      const res = await axios.post("http://localhost:4001/api/members/register", data);
+      const API_URL = process.env.REACT_APP_API_URL;
+      const res = await axios.post(`${API_URL}/api/members/register`, data);
       setNewMemberId(res.data.memberId || res.data.member._id);
       setIsSubmitted(true);
       toast.success("Application Details Verified!", { position: "bottom-right" });
@@ -120,7 +121,8 @@ export default function JoinMembership() {
 
     setLoading(true);
     try {
-      await axios.put(`http://localhost:4001/api/members/set-password/${newMemberId}`, {
+      const API_URL = process.env.REACT_APP_API_URL;
+      await axios.put(`${API_URL}/api/members/set-password/${newMemberId}`, {
         password: passwords.password
       });
       toast.success("Account Secured Successfully!", { position: "bottom-right" });

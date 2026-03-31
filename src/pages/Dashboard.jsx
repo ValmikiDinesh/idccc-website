@@ -24,7 +24,8 @@ export default function Dashboard() {
     // Optional: Fetch latest status from backend
     const fetchUserStatus = async () => {
       try {
-        const res = await axios.get(`http://localhost:4001/api/members/me`, {
+        const API_URL = process.env.REACT_APP_API_URL;
+        const res = await axios.get(`${API_URL}/api/members/me`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         setUser(res.data);
