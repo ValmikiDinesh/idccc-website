@@ -1,0 +1,44 @@
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+
+export default function Certificate() {
+  const [member, setMember] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchMemberData = async () => {
+      const storedUser = JSON.parse(localStorage.getItem("user"));
+      if (!storedUser) return navigate("/login");
+      try {
+        const API_URL = process.env.REACT_APP_API_URL;
+        const res = await axios.get(`${API_URL}/api/members/${storedUser.id}`);
+        setMember(res.data);
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchMemberData();
+  }, [navigate]);
+
+  if (loading) return <div>Loading...</div>;
+
+  return (
+    <div className="certificate-page-view">
+       {/* Use the template here */}
+       <CertificateTemplate member={member} />
+       
+       <style>{`
+          .certificate-page-view {
+             display: flex;
+             justify-content: center;
+             padding: 50px 0;
+             background: #f1f5f9;
+          }
+       `}</style>
+    </div>
+  );
+}
