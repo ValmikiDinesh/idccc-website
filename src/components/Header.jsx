@@ -1,51 +1,73 @@
-import { useState } from "react"
-import "../styles/header.css"
-import logo from "../assets/idccc-logo.png"
+import React, { useState, useEffect } from "react";
+import { NavLink, useNavigate, useLocation } from "react-router-dom";
+import { Menu, X, LogOut, Shield } from "lucide-react";
+import "../styles/header.css";
+import logo from "../assets/idccc-logo.png";
 
-export default function Header(){
+export default function Header() {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
-const [menuOpen,setMenuOpen] = useState(false)
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", handleScroll);
+    
+    const user = localStorage.getItem("user");
+    setIsLoggedIn(!!user);
+    setMenuOpen(false);
+    
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [location]);
 
-return(
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    setIsLoggedIn(false);
+    navigate("/login");
+  };
 
-<header className="header">
+  return (
+    <div className={`header-wrapper ${scrolled ? "scrolled" : ""}`}>
+      <header className="header-capsule">
+        <div className="logo-section" onClick={() => navigate("/")}>
+          <div className="logo-container">
+            <img src={logo} alt="IDCCC" className="logo-img" />
+          </div>
+          <div className="logo-text">
+            <h2>IDCCC</h2>
+          </div>
+        </div>
 
-<div className="logo-section">
+        <nav className={`nav-menu ${menuOpen ? "mobile-open" : ""}`}>
+          <div className="nav-links">
+            <NavLink to="/" end>Home</NavLink>
+            <NavLink to="/about">About</NavLink>
+            <NavLink to="/membership">Membership</NavLink>
+            <NavLink to="/activities">Activities</NavLink>
+          </div>
 
-<img src={logo} alt="IDCCC Logo" className="logo-img"/>
+          <div className="nav-separator"></div>
 
-<div className="logo-text">
+          <div className="nav-actions">
+            {!isLoggedIn ? (
+              <button className="btn-join" onClick={() => navigate("/join-membership")}>
+                Join Membership
+              </button>
+            ) : (
+              <button className="btn-logout" onClick={handleLogout}>
+                <LogOut size={16} />
+                <span>Logout</span>
+              </button>
+            )}
+          </div>
+        </nav>
 
-<h2>IDCCC</h2>
-
-<span>Indian Digital Content Creators Council</span>
-
-</div>
-
-</div>
-
-<div className="menu-icon"
-onClick={()=>setMenuOpen(!menuOpen)}
->
-☰
-</div>
-
-<nav className={menuOpen ? "nav open" : "nav"}>
-
-<a href="#">Home</a>
-<a href="#">About</a>
-<a href="#">Membership</a>
-<a href="#">Activities</a>
-<a href="#">Contact</a>
-
-<button className="join-btn">
-Join Membership
-</button>
-
-</nav>
-
-</header>
-
-)
-
+        <button className="mobile-toggle" onClick={() => setMenuOpen(!menuOpen)}>
+          {menuOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
+      </header>
+    </div>
+  );
 }

@@ -1,75 +1,34 @@
-import CountUp from "react-countup"
-import "../components/stats.css"
+import React from "react";
+import CountUp from "react-countup";
+import { FaUsers, FaNewspaper, FaGlobeAsia, FaGavel } from "react-icons/fa";
+import "../components/stats.css";
 
-import { FaUsers, FaNewspaper, FaGlobeAsia, FaChalkboardTeacher } from "react-icons/fa"
+export default function Stats() {
+  const statData = [
+    { icon: <FaUsers />, count: 12000, label: "Creators Network", suffix: "+" },
+    { icon: <FaNewspaper />, count: 800, label: "Journalists Support", suffix: "+" },
+    { icon: <FaGlobeAsia />, count: 28, label: "States Covered", suffix: "" },
+    { icon: <FaGavel />, count: 150, label: "Legal Advisors", suffix: "+" },
+  ];
 
-export default function Stats(){
-
-return(
-
-<section className="stats">
-
-<div className="stat-box">
-
-<div className="stat-icon">
-<FaUsers size={40}/>
-</div>
-
-<h2>
-<CountUp end={1000} duration={3}/>+
-</h2>
-
-<p>Digital Creators Network</p>
-
-</div>
-
-
-<div className="stat-box">
-
-<div className="stat-icon">
-<FaNewspaper size={40}/>
-</div>
-
-<h2>
-<CountUp end={500} duration={3}/>+
-</h2>
-
-<p>Journalists Supported</p>
-
-</div>
-
-
-<div className="stat-box">
-
-<div className="stat-icon">
-<FaGlobeAsia size={40}/>
-</div>
-
-<h2>
-<CountUp end={28} duration={3}/>
-</h2>
-
-<p>States Covered</p>
-
-</div>
-
-
-<div className="stat-box">
-
-<div className="stat-icon">
-<FaChalkboardTeacher size={40}/>
-</div>
-
-<h2>
-<CountUp end={120} duration={3}/>+
-</h2>
-
-<p>Legal Advisers</p>
-
-</div>
-
-</section>
-
-)
-
+  return (
+    <section className="indigo-stats-section">
+      <div className="container stats-grid-responsive">
+        {statData.map((item, index) => (
+          <div className="indigo-stat-card" key={index}>
+            <div className="indigo-stat-icon-wrapper">
+              {item.icon}
+            </div>
+            <div className="indigo-stat-content">
+              <h2>
+                <CountUp end={item.count} duration={2.5} enableScrollSpy scrollSpyOnce />
+                {item.suffix}
+              </h2>
+              <p>{item.label}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
 }

@@ -1,76 +1,75 @@
-.stats{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:10px;
-padding:20px 20px;
-background:#0a1e3a;
-color:white;
-text-align:center;
+/* --- STATS SECTION BASE --- */
+.indigo-stats-section {
+  padding: 30px 0;
+  background: var(--white);
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
 }
 
-/* Stat card */
-
-.stat-box{
-padding:5px 5px;
-transition:0.3s;
+/* --- MOBILE DEFAULT: 2-BY-2 GRID --- */
+.stats-grid-responsive {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 items per row */
+  gap: 0px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.stat-box:hover{
-transform:translateY(-5px);
+.indigo-stat-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0px;
 }
 
-.stat-icon{
-margin-bottom:5px;
-color:#f5c542;
+.indigo-stat-icon-wrapper {
+  width: 50px;
+  height: 50px;
+  background: var(--indigo-light);
+  color: var(--indigo-primary);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+  font-size: 22px;
 }
 
-.stat-box h2{
-font-size:20px;
-color:#f5c542;
-margin-bottom:5px;
+.indigo-stat-content h2 {
+  font-size: 1.0rem;
+  font-weight: 900;
+  color: var(--slate-900);
+  margin: 0;
 }
 
-.stat-box p{
-font-size:12px;
-color:#ddd;
+.indigo-stat-content p {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--slate-600);
+  text-transform: uppercase;
+  margin-top: 4px;
 }
 
+/* --- TABLET & DESKTOP: SINGLE LINE (4 COLUMNS) --- */
+/* Media query for screens 768px and wider */
+@media (min-width: 768px) {
+  .stats-grid-responsive {
+    grid-template-columns: repeat(4, 1fr); /* All 4 in one row */
+    gap: 30px;
+  }
 
-/* TABLET */
+  .indigo-stat-content h2 {
+    font-size: 2.2rem; /* Larger text for bigger screens */
+  }
 
-@media(max-width:500px){
+  .indigo-stat-content p {
+    font-size: 0.9rem;
+  }
 
-.stats{
-grid-template-columns:repeat(2,1fr);
-}
-
-}
-
-
-/* MOBILE */
-
-@media(max-width:500px){
-
-.stats{
-grid-template-columns:repeat(2,1fr);
-gap:5px;
-padding:10px 5px;
-}
-
-.stat-box{
-padding:0px 0px;
-}
-
-.stat-icon svg{
-font-size:-10px;
-}
-
-.stat-box h2{
-font-size:10px;
-}
-
-.stat-box p{
-font-size:10px;
-}
-
+  .indigo-stat-icon-wrapper {
+    width: 60px;
+    height: 60px;
+    font-size: 28px;
+  }
 }

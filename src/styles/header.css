@@ -1,89 +1,162 @@
-.header{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:12px 20px;
-background:#0a1e3a;
-color:white;
-position:sticky;
-top:0;
-z-index:1000;
+:root {
+  --idccc-indigo: #6366f1;
+  --idccc-dark: #0f172a;
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.5);
 }
 
-.logo-section{
-display:flex;
-align-items:center;
-gap:10px;
+.header-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 1.5rem 2rem; /* The "Float" margin */
+  z-index: 10000;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.logo-img{
-height:50px;
-width:auto;
+/* When the user scrolls, the header shrinks and becomes more solid */
+.header-wrapper.scrolled {
+  padding: 0.75rem 2rem;
 }
 
-.logo-text h2{
-font-size:20px;
-margin:0;
+.header-capsule {
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 70px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.5rem;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04);
 }
 
-.logo-text span{
-font-size:11px;
-color:#ddd;
+/* Logo Section */
+.logo-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
 }
 
-.nav{
-display:flex;
-gap:20px;
-align-items:center;
+.logo-container {
+  width: 50px;
+  height: 60px;
+  background: rgba(248, 248, 248, 0);
+  padding: 0px;
+  border-radius: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0);
 }
 
-.nav a{
-color:white;
-text-decoration:none;
+.logo-img { height: 100%; width: auto; }
+
+.logo-text h2 {
+  font-size: 1.1rem;
+  font-weight: 900;
+  color: var(--idccc-dark);
+  margin: 0;
+  letter-spacing: -0.5px;
 }
 
-.join-btn{
-background:#f5c542;
-border:none;
-padding:8px 14px;
-cursor:pointer;
+
+
+/* Navigation */
+.nav-menu { display: flex; align-items: center; gap: 2rem; }
+
+.nav-links { display: flex; gap: 1.5rem; }
+
+.nav-links a {
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #64748b;
+  transition: 0.2s;
+  position: relative;
 }
 
-.menu-icon{
-display:none;
-font-size:26px;
-cursor:pointer;
+.nav-links a:hover, .nav-links a.active { color: var(--idccc-indigo); }
+
+/* Underline for active link */
+.nav-links a.active::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0;
+  width: 12px; height: 2px;
+  background: var(--idccc-indigo);
+  border-radius: 2px;
 }
 
-/* MOBILE */
-
-@media(max-width:768px){
-
-.menu-icon{
-display:block;
+.nav-separator {
+  width: 1px;
+  height: 24px;
+  background: rgba(0,0,0,0.1);
 }
 
-.nav{
-position:absolute;
-top:65px;
-left:0;
-width:100%;
-background:#0a1e3a;
-flex-direction:column;
-display:none;
-padding:20px 0;
+/* Actions */
+.btn-join {
+  background: var(--idccc-indigo);
+  color: white;
+  border: none;
+  padding: 0.6rem 1.4rem;
+  border-radius: 12px;
+  font-weight: 800;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.2);
 }
 
-.nav.open{
-display:flex;
+.btn-join:hover { transform: translateY(-2px); background: #4f46e5; }
+
+.btn-logout {
+  background: rgba(244, 63, 94, 0.08);
+  color: #e11d48;
+  border: 1px solid rgba(244, 63, 94, 0.2);
+  padding: 0.5rem 1.2rem;
+  border-radius: 12px;
+  font-weight: 800;
+  font-size: 0.75rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-.nav a{
-padding:10px;
-}
+.btn-logout:hover { background: #e11d48; color: white; }
 
-.logo-img{
-height:40px;
-}
+.mobile-toggle { display: none; background: none; border: none; color: var(--idccc-dark); cursor: pointer; }
 
+/* Mobile View */
+@media (max-width: 850px) {
+  .header-wrapper { padding: 1rem; }
+  .mobile-toggle { display: block; }
+  .nav-separator { display: none; }
+  
+  .nav-menu {
+    position: fixed;
+    top: 90px; left: 1rem; right: 1rem;
+    background: white;
+    flex-direction: column;
+    padding: 2rem;
+    border-radius: 24px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    transform: translateY(-20px);
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.3s;
+  }
+  
+  .nav-menu.mobile-open { transform: translateY(0); opacity: 1; pointer-events: all; }
+  
+  .nav-links { flex-direction: column; align-items: center; gap: 1.5rem; }
+  .nav-actions { width: 100%; }
+  .btn-join, .btn-logout { width: 100%; justify-content: center; }
 }
