@@ -17,8 +17,7 @@ export default function Login() {
     setLoading(true);
 
     try {
-      const API_URL = process.env.REACT_APP_API_URL;
-      const res = await axios.post(`${API_URL}/api/members/login`, {
+      const res = await axios.post(`https://idccc-backend.onrender.com/api/members/login`, {
         email,
         password,
       });

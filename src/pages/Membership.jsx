@@ -21,9 +21,8 @@ export default function Membership() {
     const storedUser = JSON.parse(localStorage.getItem("user"));
     if (!storedUser) return navigate("/login");
     try {
-      const API_URL = process.env.REACT_APP_API_URL;
       // Ensure this port matches your Backend (4001)
-      const res = await axios.get(`${API_URL}/api/members/${storedUser.id}`);
+      const res = await axios.get(`https://idccc-backend.onrender.com/api/members/${storedUser.id}`);
       setMember(res.data);
     } catch (err) {
       toast.error("Session expired. Please login again.");
@@ -44,9 +43,8 @@ export default function Membership() {
     const toastId = toast.loading("Council is processing your documents...");
     
     try {
-      const API_URL = process.env.REACT_APP_API_URL;
       // Trigger the Puppeteer engine
-      const res = await axios.post(`${API_URL}/api/members/generate-docs/${member._id}`);
+      const res = await axios.post(`https://idccc-backend.onrender.com/api/members/generate-docs/${member._id}`);
       
       if (res.data.success) {
         // Update local state with the new Cloudinary URLs and Reg Number

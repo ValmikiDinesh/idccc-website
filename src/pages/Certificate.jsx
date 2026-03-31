@@ -12,8 +12,7 @@ export default function Certificate() {
       const storedUser = JSON.parse(localStorage.getItem("user"));
       if (!storedUser) return navigate("/login");
       try {
-        const API_URL = process.env.REACT_APP_API_URL;
-        const res = await axios.get(`${API_URL}/api/members/${storedUser.id}`);
+        const res = await axios.get(`https://idccc-backend.onrender.com/api/members/${storedUser.id}`);
         setMember(res.data);
       } catch (err) {
         console.error(err);

@@ -8,9 +8,8 @@ const {id} = useParams()
 
 const payNow = async()=>{
 
-const API_URL = process.env.REACT_APP_API_URL;
 const res = await axios.post(
-`${API_URL}/api/payment/success/${id}`,
+`https://idccc-backend.onrender.com/api/payment/success/${id}`,
 {
 paymentId:"PAY123456"
 }

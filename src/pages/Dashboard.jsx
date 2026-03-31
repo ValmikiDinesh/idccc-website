@@ -24,8 +24,7 @@ export default function Dashboard() {
     // Optional: Fetch latest status from backend
     const fetchUserStatus = async () => {
       try {
-        const API_URL = process.env.REACT_APP_API_URL;
-        const res = await axios.get(`${API_URL}/api/members/me`, {
+        const res = await axios.get(`https://idccc-backend.onrender.com/api/members/me`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         setUser(res.data);
