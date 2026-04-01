@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import ProtectedRoute from "./components/ProtectedRoute";
+import VerifyMember from "./pages/VerifyMember";
 
 // Importing pages
 import Home from "./pages/Home";
@@ -18,7 +19,7 @@ function App() {
       <main style={{ marginTop: "80px" }}>
         <Routes>
           <Route path="/" element={<Home />} />
-          
+          <Route path="/verify/:id" element={<VerifyMember />} />
           {/* 2. ADD THIS ROUTE */}
           <Route path="/about" element={<About />} />
           <Route path="/certificate" element={<Certificate />} />
