@@ -120,7 +120,7 @@ export default function JoinMembership() {
 
     setLoading(true);
     try {
-      await axios.put(`$https://idccc-backend.onrender.com/api/members/set-password/${newMemberId}`, {
+      await axios.put(`https://idccc-backend.onrender.com/api/members/set-password/${newMemberId}`, {
         password: passwords.password
       });
       toast.success("Account Secured Successfully!", { position: "bottom-right" });
