@@ -1,94 +1,191 @@
-/* src/pages/VerifyMember.css */
-
+/* ===== 1. BACKGROUND ===== */
 .verify-container {
   min-height: 100vh;
-  width: 100vw;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  /* DARK INDIGO BACKGROUND - Forces away the white */
-  background: #020617 !important; 
+
+  background: linear-gradient(135deg, #eef2ff, #e0e7ff, #c7d2fe);
+  font-family: 'Inter', sans-serif;
   position: relative;
   overflow: hidden;
-  margin: 0;
-  padding: 0;
-  font-family: 'Inter', sans-serif;
 }
 
-/* Background Glow (Provides color behind the transparency) */
-.glow-effect {
+/* soft gradient blobs */
+.verify-container::before {
+  content: "";
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   width: 500px;
   height: 500px;
-  background: radial-gradient(circle, rgba(67, 56, 202, 0.4) 0%, transparent 70%);
-  filter: blur(80px);
-  z-index: 1;
+  background: radial-gradient(circle, #6366f1 0%, transparent 70%);
+  top: -120px;
+  left: -120px;
+  opacity: 0.25;
 }
 
-/* THE TRANSPARENT CARD */
+.verify-container::after {
+  content: "";
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, #818cf8 0%, transparent 70%);
+  bottom: -120px;
+  right: -120px;
+  opacity: 0.25;
+}
+
+/* ===== 2. GLASS CARD ===== */
 .glass-card {
   position: relative;
   z-index: 10;
-  width: 90%;
-  max-width: 350px;
-  /* Transparent Surface */
-  background: rgba(255, 255, 255, 0.03) !important; 
-  backdrop-filter: blur(25px) saturate(150%);
-  -webkit-backdrop-filter: blur(25px) saturate(150%);
-  
-  /* CRITICAL WHITE BORDER */
-  border: 1.5px solid rgba(255, 255, 255, 0.6) !important; 
-  border-radius: 40px;
-  padding: 45px 20px;
+  width: 100%;
+  max-width: 380px;
+
+  padding: 40px 30px;
+  border-radius: 28px;
+
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+
+  border: 1px solid rgba(255, 255, 255, 0.6);
+
+  box-shadow:
+    0 20px 40px rgba(99, 102, 241, 0.2),
+    inset 0 0 30px rgba(255, 255, 255, 0.5);
+
+  transition: 0.3s ease;
+}
+
+.glass-card:hover {
+  transform: translateY(-5px);
+  box-shadow:
+    0 30px 60px rgba(99, 102, 241, 0.3),
+    0 0 30px rgba(99, 102, 241, 0.2);
+}
+
+/* ===== HEADER ===== */
+.registry-title {
+  text-align: center;
+  font-size: 10px;
+  letter-spacing: 4px;
+  color: #6366f1;
+  font-weight: 600;
+  margin-bottom: 25px;
+}
+
+/* ===== PROFILE ===== */
+.photo-wrapper {
+  position: relative;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.8);
+  justify-content: center;
+  margin-bottom: 20px;
 }
 
 .profile-img {
-  width: 130px;
-  height: 130px;
+  width: 110px;
+  height: 110px;
   border-radius: 50%;
-  border: 2px solid #ffffff; /* White border for photo */
+
   object-fit: cover;
-  margin-bottom: 20px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  border: 3px solid #6366f1;
+
+  box-shadow: 0 10px 25px rgba(99, 102, 241, 0.3);
 }
 
+/* ===== STATUS BADGE ===== */
+.status-pill {
+  position: absolute;
+  bottom: -18px;
+
+  padding: 6px 14px;
+  border-radius: 999px;
+
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 1px;
+
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.status-active {
+  background: #0cf186;
+  color: #ffffff;
+  border: 1px solid #0cf186;
+}
+
+.status-inactive {
+  background: #ff0c0c;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+/* ===== TEXT ===== */
 .member-name {
-  color: #ffffff !important;
+  text-align: center;
+  color: #1e293b;
   font-size: 1.6rem;
-  font-weight: 800;
-  margin: 0;
-  text-align: center;
-}
-
-.creator-type {
-  color: rgba(255, 255, 255, 0.5) !important;
-  font-size: 0.75rem;
   font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 3px;
-  margin-top: 5px;
 }
 
-.status-box {
-  margin-top: 35px;
-  width: 100%;
-  padding: 20px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 20px;
+.creator-tag {
+  text-align: center;
+  color: #6366f1;
+  font-size: 12px;
+  letter-spacing: 2px;
+  margin-top: 6px;
+}
+
+/* ===== FOOTER ===== */
+.verify-footer {
+  margin-top: 30px;
+  padding-top: 20px;
+
+  border-top: 1px solid rgba(99, 102, 241, 0.2);
   text-align: center;
 }
 
-.status-text {
-  color: #4ade80 !important; /* Success Green */
-  font-weight: 900;
-  font-size: 1.1rem;
-  margin: 0;
+.verified-label {
+  font-size: 12px;
+  color: #6366f1;
+  letter-spacing: 2px;
+  font-weight: 600;
+}
+
+.reg-code {
+  font-size: 15px;
+  font-weight: bold;
+  color: #64748b;
+  margin-top: 6px;
+  font-family: monospace;
+}
+
+/* ===== BRAND ===== */
+.brand-footer {
+  margin-top: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.brand-footer img {
+  height: 50px;
+  opacity: 1;
+}
+
+.brand-footer span {
+  font-size: 9px;
+  color: #6366f1;
+  letter-spacing: 2px;
 }
