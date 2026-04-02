@@ -15,7 +15,8 @@ export default function JoinMembership() {
   const [step, setStep] = useState(1);
   const [loading, setLoading] = useState(false);
   const [dob, setDob] = useState(null);
-  
+
+  const [showTerms, setShowTerms] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [newMemberId, setNewMemberId] = useState("");
   const [passwords, setPasswords] = useState({ password: "", confirm: "" });
@@ -251,10 +252,14 @@ export default function JoinMembership() {
                         <div className="review-item"><span>Current Address</span><strong>{form.city ? `${form.address}, ${form.city}, ${form.state}` : "—"}</strong></div>
                       </div>
                     </div>
-                    <div className="declaration-box">
-                      <input type="checkbox" id="confirm" required />
-                      <label htmlFor="confirm">I confirm that all the details provided above are accurate.</label>
-                    </div>
+                  
+<div className="declaration-box">
+  <input type="checkbox" id="confirm" required />
+  <label htmlFor="confirm">
+    I confirm that all the details provided above are accurate and I agree to the 
+    <span className="terms-link" onClick={() => setShowTerms(true)}> Terms & Conditions</span>.
+  </label>
+</div>
                   </motion.div>
                 )}
 
@@ -289,6 +294,39 @@ export default function JoinMembership() {
             </motion.div>
           )}
         </AnimatePresence>
+        {/* 3. The Modal Overlay (Add this at the very bottom of your return, just before the last </div>) */}
+<AnimatePresence>
+  {showTerms && (
+    <motion.div 
+      className="modal-overlay"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      onClick={() => setShowTerms(false)} // Close when clicking background
+    >
+      <motion.div 
+        className="terms-modal"
+        initial={{ scale: 0.9, y: 20 }}
+        animate={{ scale: 1, y: 0 }}
+        exit={{ scale: 0.9, y: 20 }}
+        onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside
+      >
+        <div className="modal-header">
+          <h3>Terms & Conditions</h3>
+          <button className="close-modal" onClick={() => setShowTerms(false)}><X size={20}/></button>
+        </div>
+        <div className="modal-body">
+          <h4>1. Membership Eligibility</h4>
+          <p>By registering with IDCCC, you confirm you are a verified digital content creator...</p>
+          <h4>2. Data Privacy</h4>
+          <p>Your Aadhaar and personal data are encrypted and used solely for council verification...</p>
+          {/* Add more terms here */}
+        </div>
+        <button className="btn-primary full-width" onClick={() => setShowTerms(false)}>I Understand</button>
+      </motion.div>
+    </motion.div>
+  )}
+</AnimatePresence>
       </div>
     </div>
   );
